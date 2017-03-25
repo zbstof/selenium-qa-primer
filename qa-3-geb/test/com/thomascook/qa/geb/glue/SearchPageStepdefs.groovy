@@ -1,4 +1,4 @@
-package com.thomascook.qa.geb.steps
+package com.thomascook.qa.geb.glue
 
 import com.thomascook.qa.geb.pages.SearchPage
 import groovy.transform.Field

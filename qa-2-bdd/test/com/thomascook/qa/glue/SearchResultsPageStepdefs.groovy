@@ -1,20 +1,16 @@
-package com.thomascook.qa.geb.steps
+package com.thomascook.qa.glue
 
-import com.thomascook.qa.geb.Util
-import com.thomascook.qa.geb.pages.ResultsPage
-import groovy.transform.Field
+import com.thomascook.qa.Util
+import com.thomascook.qa.pages.ResultsPage
 
 import static cucumber.api.groovy.EN.And
 import static cucumber.api.groovy.EN.Then
 
+ResultsPage page
 
-@Lazy
-@Field
-ResultsPage page = page as ResultsPage
-
-Then(~/^I am on the (first|second) search results page$/) { String pageNumMarker ->
-    at ResultsPage
-    page.assertPageAttributes(Util.parse(pageNumMarker), searchTerm)
+Then(~/^I am on the (first|second) search results page$/) { String pageNumMarker->
+    page = new ResultsPage(driver)
+    page.at()
 }
 And(~/^I should see (\d+) search results$/) { int results ->
     page.assertNumberOfResults(results)

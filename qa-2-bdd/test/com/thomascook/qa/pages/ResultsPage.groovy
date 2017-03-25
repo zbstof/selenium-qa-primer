@@ -1,27 +1,18 @@
-package com.thomascook.qa.bdd.pages
+package com.thomascook.qa.pages
 
-import com.thomascook.qa.bdd.Util
+import com.thomascook.qa.Util
 import org.openqa.selenium.By
+import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 
 class ResultsPage extends Page {
 
-    private int pageNum
-    private String searchTerm
-
-    ResultsPage(Integer pageNum, String searchTerm) {
-        assert pageNum >= 1
-        this.pageNum = pageNum
-        this.searchTerm = searchTerm
+    ResultsPage(WebDriver driver) {
+        super(driver)
     }
 
     void at() {
-        while (!driver.getTitle().contains(searchTerm)) {
-            Thread.sleep(Util.HALF_SECOND)
-        }
-        while (!getNavigation().get(pageNum - 1).getAttribute("class").contains("cur")) {
-            Thread.sleep(Util.HALF_SECOND)
-        }
+        Util.waitFor { results.size() > 0 }
     }
 
     // page content
@@ -37,21 +28,33 @@ class ResultsPage extends Page {
         return driver.findElements(By.cssSelector(".rc"))
     }
 
+    private WebElement getCurrentNav() {
+        return driver.findElement(By.cssSelector("table#nav td.cur"))
+    }
+
     // actions
     void clickOnNav(Integer navPage) {
-        getNavigation().get(navPage - 1).click()
+        navigation.get(navPage - 1).click()
     }
 
     // assertions
     void assertStatText(String text) {
-        assert getStats().getText().startsWith(text)
+        assert stats.text.startsWith(text)
     }
 
     void assertNavSize(Integer minPages) {
-        assert getNavigation().size() > minPages
+        assert navigation.size() > minPages
     }
 
     void assertNumberOfResults(Integer resultsNum) {
-        assert getResults().size() == resultsNum
+        assert results.size() == resultsNum
+    }
+
+    void assertPageIsCorrect(Integer pageNum) {
+        Util.waitFor { navigation.get(pageNum - 1) == currentNav }
+    }
+
+    void assertTitleIsCorrect(String searchTerm) {
+        Util.waitFor { driver.title.contains(searchTerm) }
     }
 }

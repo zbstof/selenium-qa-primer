@@ -1,10 +1,15 @@
-package com.thomascook.qa.bdd.pages
+package com.thomascook.qa.pages
 
 import org.openqa.selenium.By
 import org.openqa.selenium.Keys
+import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 
 class SearchPage extends Page {
+
+    SearchPage(WebDriver driver) {
+        super(driver)
+    }
 
     void at() {
         assert driver.getTitle() == "Google"
