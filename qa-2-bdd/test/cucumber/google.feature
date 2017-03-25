@@ -13,4 +13,4 @@ Feature: As a Webrio user, I want to look up my project on google, so that I can
     And Navigation bar shows more than 2 'o's
     And I click on second 'o'
     And I am on the second search results page
-    And Results are preceded by words 'Page 2...'
+    And Results are preceded by words 'Сторінка 2...'

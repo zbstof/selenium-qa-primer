@@ -8,9 +8,11 @@ import static cucumber.api.groovy.EN.Then
 
 ResultsPage page
 
-Then(~/^I am on the (first|second) search results page$/) { String pageNumMarker->
+Then(~/^I am on the (first|second) search results page$/) { String pageNumMarker ->
     page = new ResultsPage(driver)
     page.at()
+    page.assertPageIsCorrect(Util.parse(pageNumMarker))
+    page.assertTitleIsCorrect(searchTerm)
 }
 And(~/^I should see (\d+) search results$/) { int results ->
     page.assertNumberOfResults(results)

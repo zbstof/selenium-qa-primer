@@ -11,9 +11,9 @@ Selenium, Groovy, Cucumber, Geb, Maven, junit, reporting stack
 [selenium-remote-driver](http://central.maven.org/maven2/org/seleniumhq/selenium/selenium-remote-driver/)
 - Put jars into `lib` folder, it should be on the classpath during compile- and run-time
 - Create java class with main method. Create HtmlUnit driver inside. 
-* Open google search page
-* Search for `webrio thomas cook`
-* print page title
+    * Open google search page
+    * Search for `webrio thomas cook`
+    * print page title
 - compile and run (TODO: command-line to do that)
 
 Hint: By.name("q") - query
@@ -51,10 +51,10 @@ Hint: By.cssSelector("#resultStats") - text on top
 - point out how messy the code became
 - create abstract class Page with to() and at() methods
 - 2 concrete implementations: ResultsPage, SearchPage
-* constructor accepts WebDriver
-* content section
-* action section
-* asserts section
+    * constructor accepts WebDriver
+    * content section
+    * action section
+    * asserts section
 - write waitFor implementation that accepts Closure<Boolean>, 
 it should ignore exceptions on call()
 
@@ -64,17 +64,25 @@ correct page should be validated (and wait for) separately
 
 ## BDD: Cucumber
 
+- Download dependencies and sources:
+    * [cucumber-core](http://repo1.maven.org/maven2/info/cukes/cucumber-core/)
+    * [cucumber-jvm-deps](http://repo1.maven.org/maven2/info/cukes/cucumber-jvm-deps/)
+    * [cucumber-groovy](http://repo1.maven.org/maven2/info/cukes/cucumber-groovy/)
 - Write out scenarios in .feature file
 - Auto-generate stepdefs from missing steps
-- Explain about stepdef parameters, capture groups /-slashes, $,^-boundaries
+- Explain about stepdef parameters, capture groups /-slashes, $,^-boundaries, case sensitivity
 - Add glue: env.groovy with World Hook with `driver`, `searchTerm`
 - explain how this allows to share data between different steps
 - Introduce Util class: parse number from string, waitFor method
 - use property-style accessors in groovy for content
+- separations of concerns 
+    * front-end data on cucumber
+    * shared data in world + stepdefs
+    * page data on page object
+- run .feature file directly
 
+Docs: Cucumber jvm - https://cucumber.io/docs/reference/jvm
 
-
-- Cucumber jvm: https://cucumber.io/docs/reference/jvm
 - http://repo1.maven.org/maven2/info/cukes/cucumber-core/1.2.4/
 - java -classpath "./out/test/qa-1-command-line/:./lib/*:/Users/zbstof/groovy-2.4.8/lib/*" cucumber.api.cli.Main --glue ./src/com/thomascook/qa/steps ./src/cucumber/google.feature
 - java -classpath "./out/test/qa-1-command-line/:./lib/*:/Users/zbstof/groovy-2.4.8/lib/*" cucumber.api.cli.Main --glue ./src/com/thomascook/qa/bdd/steps ./src/com/thomascook/qa/bdd/cucumber/google.feature

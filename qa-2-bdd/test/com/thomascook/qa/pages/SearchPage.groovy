@@ -12,7 +12,7 @@ class SearchPage extends Page {
     }
 
     void at() {
-        assert driver.getTitle() == "Google"
+        assert driver.title == "Google"
     }
 
     void to() {
@@ -20,16 +20,14 @@ class SearchPage extends Page {
     }
 
     // page content
-    private WebElement searchField() {
-        WebElement queryElement = driver.findElement(By.name("q"))
-        return queryElement
+    private WebElement getSearchField() {
+        return driver.findElement(By.name("q"))
     }
 
     // actions
     void searchFor(String queryString) {
-        WebElement queryElement = searchField()
-        queryElement.sendKeys(queryString)
-        queryElement.sendKeys(Keys.ENTER)
+        searchField.sendKeys(queryString)
+        searchField.sendKeys(Keys.ENTER)
     }
 }
 
