@@ -14,7 +14,8 @@ ResultsPage page = page as ResultsPage
 
 Then(~/^I am on the (first|second) search results page$/) { String pageNumMarker ->
     at ResultsPage
-    page.assertPageAttributes(Util.parse(pageNumMarker), searchTerm)
+    page.assertPageIsCorrect(Util.parse(pageNumMarker))
+    page.assertTitleIsCorrect(searchTerm)
 }
 And(~/^I should see (\d+) search results$/) { int results ->
     page.assertNumberOfResults(results)

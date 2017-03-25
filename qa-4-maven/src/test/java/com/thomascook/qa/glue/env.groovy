@@ -9,7 +9,6 @@ import org.openqa.selenium.WebDriverException
 
 class SearchWorld {
     String searchTerm
-    Integer currentPage
 }
 
 Hooks.World {

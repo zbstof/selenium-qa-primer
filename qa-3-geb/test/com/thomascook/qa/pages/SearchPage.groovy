@@ -5,11 +5,11 @@ import org.openqa.selenium.Keys
 
 class SearchPage extends Page {
 
-    static url = "http://www.google.com"
-
     static at = {
         title == "Google"
     }
+
+    static url = "http://www.google.com"
 
     static content = {
         searchField { $(name: "q") }

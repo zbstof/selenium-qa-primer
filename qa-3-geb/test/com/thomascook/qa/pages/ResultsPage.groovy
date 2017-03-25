@@ -9,14 +9,14 @@ class ResultsPage extends Page {
 
     static content = {
         stats { $("#resultStats") }
-        navigations { $("table#nav td:not(.b)") }
-        currentNavigation { $("table#nav td.cur") }
+        navigation { $("table#nav td:not(.b)") }
         results { $(".rc") }
+        currentNav { $("table#nav td.cur") }
     }
 
     // actions
     void clickOnNav(Integer navPage) {
-        navigations[navPage - 1].click()
+        navigation[navPage - 1].click()
     }
 
     // assertions
@@ -25,14 +25,18 @@ class ResultsPage extends Page {
     }
 
     void assertNavSize(Integer minPages) {
-        assert navigations.size() > minPages
+        assert navigation.size() > minPages
     }
 
     void assertNumberOfResults(Integer resultsNum) {
         assert results.size() == resultsNum
     }
 
-    void assertPageAttributes(Integer pageNum, String searchTerm) {
-        waitFor { title.contains(searchTerm) && navigations[pageNum - 1] == currentNavigation }
+    void assertPageIsCorrect(Integer pageNum) {
+        waitFor { navigation[pageNum - 1] == currentNav }
+    }
+
+    void assertTitleIsCorrect(String searchTerm) {
+        waitFor { driver.title.contains(searchTerm) }
     }
 }

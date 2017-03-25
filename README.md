@@ -6,9 +6,9 @@ Selenium, Groovy, Cucumber, Geb, Maven, junit, reporting stack
 - Download dependencies for selenium: 
 [selenium-server-standalone](http://www.seleniumhq.org/download/), [direct link](http://selenium-release.storage.googleapis.com/3.3/selenium-server-standalone-3.3.1.jar)
 - Download sources for easy documentation:
-[selenium-api](http://central.maven.org/maven2/org/seleniumhq/selenium/selenium-api/3.3.1/),  
-[selenium-chrome-driver](http://central.maven.org/maven2/org/seleniumhq/selenium/selenium-chrome-driver/3.3.1/),
-[selenium-remote-driver](http://central.maven.org/maven2/org/seleniumhq/selenium/selenium-remote-driver/)
+    * [selenium-api](http://central.maven.org/maven2/org/seleniumhq/selenium/selenium-api/3.3.1/),  
+    * [selenium-chrome-driver](http://central.maven.org/maven2/org/seleniumhq/selenium/selenium-chrome-driver/3.3.1/),
+    * [selenium-remote-driver](http://central.maven.org/maven2/org/seleniumhq/selenium/selenium-remote-driver/)
 - Put jars into `lib` folder, it should be on the classpath during compile- and run-time
 - Create java class with main method. Create HtmlUnit driver inside. 
     * Open google search page
@@ -68,6 +68,7 @@ correct page should be validated (and wait for) separately
     * [cucumber-core](http://repo1.maven.org/maven2/info/cukes/cucumber-core/)
     * [cucumber-jvm-deps](http://repo1.maven.org/maven2/info/cukes/cucumber-jvm-deps/)
     * [cucumber-groovy](http://repo1.maven.org/maven2/info/cukes/cucumber-groovy/)
+    * [gherkin](http://central.maven.org/maven2/info/cukes/gherkin/)
 - Write out scenarios in .feature file
 - Auto-generate stepdefs from missing steps
 - Explain about stepdef parameters, capture groups /-slashes, $,^-boundaries, case sensitivity
@@ -79,10 +80,26 @@ correct page should be validated (and wait for) separately
     * front-end data on cucumber
     * shared data in world + stepdefs
     * page data on page object
-- run .feature file directly
+- run .feature file directly from IDEA
+- run all features from command-line:
+`java -classpath "./out/test/qa-2-bdd/:./lib/*" cucumber.api.cli.Main --glue qa-2-bdd/test/com/thomascook/qa/glue qa-2-bdd/test/cucumber/`
+
 
 Docs: Cucumber jvm - https://cucumber.io/docs/reference/jvm
 
-- http://repo1.maven.org/maven2/info/cukes/cucumber-core/1.2.4/
+## Geb - groovy automation
+
+- Download dependencies and sources as needed:
+    * [geb-core](http://central.maven.org/maven2/org/gebish/geb-core/geb-core/) - get sources for this
+    * [geb-ast](http://central.maven.org/maven2/org/gebish/geb-core/geb-ast/)
+    * [geb-core](http://central.maven.org/maven2/org/gebish/geb-core/geb-core/)
+    * [geb-exceptions](http://central.maven.org/maven2/org/gebish/geb-core/geb-exceptions/)
+    * [geb-waiting](http://central.maven.org/maven2/org/gebish/geb-core/geb-waiting/)
+- Replace at, content with static blocks
+- Add GebConfig.groovy at top context, initialize driver
+- Add bindingUpdater initialization/removal to Before/After hooks in env.groovy 
+- Remove waitFor, parent Page class
+- add @lazy @field for syntax highlighting
+
 - java -classpath "./out/test/qa-1-command-line/:./lib/*:/Users/zbstof/groovy-2.4.8/lib/*" cucumber.api.cli.Main --glue ./src/com/thomascook/qa/steps ./src/cucumber/google.feature
 - java -classpath "./out/test/qa-1-command-line/:./lib/*:/Users/zbstof/groovy-2.4.8/lib/*" cucumber.api.cli.Main --glue ./src/com/thomascook/qa/bdd/steps ./src/com/thomascook/qa/bdd/cucumber/google.feature

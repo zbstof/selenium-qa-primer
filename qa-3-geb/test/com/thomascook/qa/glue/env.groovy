@@ -6,15 +6,14 @@ import geb.binding.BindingUpdater
 
 class SearchWorld {
     String searchTerm
-    Integer currentPage
 }
 
 Hooks.World {
     new SearchWorld()
 }
 
-def bindingUpdater
-def theBrowser
+BindingUpdater bindingUpdater
+Browser theBrowser
 
 Hooks.Before { scenario ->
     if (!binding.hasVariable('browser')) {
