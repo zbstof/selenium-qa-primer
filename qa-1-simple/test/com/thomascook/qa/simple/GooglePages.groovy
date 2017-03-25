@@ -29,14 +29,16 @@ class GooglePages {
         searchPage.at()
         searchPage.searchFor("webrio thomas cook")
 
-        ResultsPage resultsPage = new ResultsPage(driver, 1)
+        ResultsPage resultsPage = new ResultsPage(driver)
         resultsPage.at()
+        resultsPage.assertPageIsCorrect(1)
         resultsPage.assertNumberOfResults(10)
         resultsPage.assertNavSize(2)
         resultsPage.clickOnNav(2)
 
-        ResultsPage resultsPage2 = new ResultsPage(driver, 2)
+        ResultsPage resultsPage2 = new ResultsPage(driver)
         resultsPage2.at()
+        resultsPage2.assertPageIsCorrect(2)
         resultsPage2.assertStatText("Сторінка 2")
     }
 }
@@ -67,8 +69,7 @@ class SearchPage extends Page {
 
     // page content
     private WebElement searchField() {
-        WebElement queryElement = driver.findElement(By.name("q"))
-        return queryElement
+        return driver.findElement(By.name("q"))
     }
 
     // actions
@@ -82,21 +83,13 @@ class SearchPage extends Page {
 class ResultsPage extends Page {
 
     private WebDriver driver
-    private int pageNum
 
-    ResultsPage(WebDriver driver, Integer pageNum) {
-        assert pageNum >= 1
-        this.pageNum = pageNum
+    ResultsPage(WebDriver driver) {
         this.driver = driver
     }
 
     void at() {
-        while (!driver.getTitle().contains("webrio")) {
-            Thread.sleep(GooglePages.HALF_SECOND)
-        }
-        while (!getNavigation().get(pageNum - 1).getAttribute("class").contains("cur")) {
-            Thread.sleep(GooglePages.HALF_SECOND)
-        }
+        waitFor { driver.getTitle().contains("webrio") }
     }
 
     // page content
@@ -110,6 +103,10 @@ class ResultsPage extends Page {
 
     private List<WebElement> getResults() {
         return driver.findElements(By.cssSelector(".rc"))
+    }
+
+    private WebElement getCurrentNav() {
+        return driver.findElement(By.cssSelector("table#nav td.cur"))
     }
 
     // actions
@@ -128,5 +125,25 @@ class ResultsPage extends Page {
 
     void assertNumberOfResults(Integer resultsNum) {
         assert getResults().size() == resultsNum
+    }
+
+    void assertPageIsCorrect(Integer pageNum) {
+        waitFor { getNavigation().get(pageNum - 1) == getCurrentNav() }
+    }
+
+    void waitFor(Closure<Boolean> body) {
+        int counter = 0
+        boolean check = false
+        while (!check) {
+            try {
+                check = body.call()
+            } catch (Exception ignore) {
+                println ignore
+                check = false
+            }
+            assert counter < 10
+            Thread.sleep(GooglePages.HALF_SECOND)
+            counter++
+        }
     }
 }
