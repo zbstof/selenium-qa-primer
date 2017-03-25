@@ -8,7 +8,7 @@ import org.junit.runner.RunWith
 @RunWith(Cucumber)
 @CucumberOptions(
         // glue and features are not pulled from target
-        glue = "src/test/java/com/thomascook/qa/maven/glue",
+        glue = "src/test/java/com/thomascook/qa/glue",
         features = "src/test/java/cucumber/",
         format = "json:target/cucumber.json")
 class TestRunner {

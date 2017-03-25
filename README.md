@@ -84,7 +84,6 @@ correct page should be validated (and wait for) separately
 - run all features from command-line:
 `java -ea -classpath "./out/test/qa-2-bdd/:./lib/*" cucumber.api.cli.Main --glue qa-2-bdd/test/com/thomascook/qa/glue qa-2-bdd/test/cucumber/`
 
-
 Docs: Cucumber jvm - https://cucumber.io/docs/reference/jvm
 
 ## Geb - groovy automation
@@ -96,7 +95,7 @@ Docs: Cucumber jvm - https://cucumber.io/docs/reference/jvm
     * [geb-exceptions](http://central.maven.org/maven2/org/gebish/geb-core/geb-exceptions/)
     * [geb-waiting](http://central.maven.org/maven2/org/gebish/geb-core/geb-waiting/)
 - Replace at, content with static blocks
-- Add GebConfig.groovy at top context, initialize driver
+- Add GebConfig.groovy at top context, initialize driver, remove driver from World hook
 - Add bindingUpdater initialization/removal to Before/After hooks in env.groovy 
 - Remove waitFor, parent Page class
 - add @lazy @field for syntax highlighting
@@ -107,6 +106,32 @@ Docs: Cucumber jvm - https://cucumber.io/docs/reference/jvm
 
 ## Maven - dependency management
 
+- add pom file with the following dependencies
+    * selenium-server
+    * groovy-all
+    * cucumber-groovy
+    * geb-core
+- Explain how maven manages dependencies and all transitive dependencies are downloaded automatically
+- move GebConfig to resources
+- maven test -> nothing happens -> need to add junit test for surefire-plugin to run
+- add dependency to pom: cucumber-junit
+- Add Junit test with @CucumberOptions
+- run tests
+
+## Managing driver binaries
+
+- add dependency to pom: io.github.bonigarcia:webdrivermanager
+- add browser init in GebConfig: `ChromeDriverManager.getInstance().setup()`
+- remove `bin` directory
+- run tests
+
 ## Reporting
 
+- add format option to junit cucumber report: `format = "json:target/cucumber.json"`
 - Add screenshot taking to After hook
+- add dependency to pom: net.masterthought:cucumber-reporting
+- Add code to parse json and generate html reports
+    * To shutdownHook of Junit test
+    * To maven execution stage
+    * To format plugin option of junit test
+- maybe add code, so that each report will be written to different folder
