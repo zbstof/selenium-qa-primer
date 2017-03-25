@@ -46,6 +46,33 @@ Hint: By.cssSelector("#resultStats") - text on top
 - migrate to groovy
 - show PowerAssert enhanced reporting
 
+## Separate Page files
+
+- point out how messy the code became
+- create abstract class Page with to() and at() methods
+- 2 concrete implementations: ResultsPage, SearchPage
+* constructor accepts WebDriver
+* content section
+* action section
+* asserts section
+- write waitFor implementation that accepts Closure<Boolean>, 
+it should ignore exceptions on call()
+
+Hint: separate content for current navigator and all navigators
+Hint: ResultsPage at checker should only check for results presence,
+correct page should be validated (and wait for) separately
+
+## BDD: Cucumber
+
+- Write out scenarios in .feature file
+- Auto-generate stepdefs from missing steps
+- Explain about stepdef parameters, capture groups /-slashes, $,^-boundaries
+- Add glue: env.groovy with World Hook with `driver`, `searchTerm`
+- explain how this allows to share data between different steps
+- Introduce Util class: parse number from string, waitFor method
+- use property-style accessors in groovy for content
+
+
 
 - Cucumber jvm: https://cucumber.io/docs/reference/jvm
 - http://repo1.maven.org/maven2/info/cukes/cucumber-core/1.2.4/

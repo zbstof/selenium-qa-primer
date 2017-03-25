@@ -1,4 +1,4 @@
-package com.thomascook.qa.maven.pages
+package com.thomascook.qa.pages
 
 import geb.Page
 import org.openqa.selenium.Keys

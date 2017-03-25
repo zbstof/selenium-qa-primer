@@ -1,6 +1,6 @@
-package com.thomascook.qa.geb.glue
+package com.thomascook.qa.glue
 
-import com.thomascook.qa.geb.pages.SearchPage
+import com.thomascook.qa.pages.SearchPage
 import groovy.transform.Field
 
 import static cucumber.api.groovy.EN.Given

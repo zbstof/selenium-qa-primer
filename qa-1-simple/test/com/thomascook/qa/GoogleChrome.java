@@ -1,4 +1,4 @@
-package com.thomascook.qa.simple;
+package com.thomascook.qa;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

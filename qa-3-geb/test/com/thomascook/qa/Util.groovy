@@ -1,4 +1,4 @@
-package com.thomascook.qa.maven
+package com.thomascook.qa
 
 import cucumber.api.PendingException
 

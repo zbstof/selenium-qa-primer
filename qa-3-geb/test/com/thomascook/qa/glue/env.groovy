@@ -1,4 +1,4 @@
-package com.thomascook.qa.geb.glue
+package com.thomascook.qa.glue
 
 import cucumber.api.groovy.Hooks
 import geb.Browser

@@ -1,4 +1,4 @@
-package com.thomascook.qa.geb.pages
+package com.thomascook.qa.pages
 
 import geb.Page
 
