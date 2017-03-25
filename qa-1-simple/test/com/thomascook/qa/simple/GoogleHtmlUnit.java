@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-public class Google {
+public class GoogleHtmlUnit {
 
     private static final WebDriver driver = new HtmlUnitDriver();
 
