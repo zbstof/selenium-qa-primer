@@ -1,6 +1,6 @@
 import org.openqa.selenium.chrome.ChromeDriver
 
 driver = {
-    System.setProperty("webdriver.chrome.driver", "lib/chromedriver")
+    System.setProperty("webdriver.chrome.driver", "bin/chromedriver")
     new ChromeDriver()
 }

@@ -11,7 +11,7 @@ class GoogleGroovyNavigation {
     private static final int HALF_SECOND = 500
 
     static void main(String[] args) throws Exception {
-        System.setProperty("webdriver.chrome.driver", "lib/chromedriver")
+        System.setProperty("webdriver.chrome.driver", "bin/chromedriver")
         WebDriver driver = new ChromeDriver()
         // have to close browser even if exception occurs
         try {

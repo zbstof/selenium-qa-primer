@@ -13,7 +13,7 @@ class GooglePages {
 
     static void main(String[] args) throws Exception {
 
-        System.setProperty("webdriver.chrome.driver", "lib/chromedriver")
+        System.setProperty("webdriver.chrome.driver", "bin/chromedriver")
         driver = new ChromeDriver()
         try {
             new GooglePages().run()

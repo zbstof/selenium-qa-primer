@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver
 class DriverManager {
     static final WebDriver driver
     static {
-        System.setProperty("webdriver.chrome.driver", "lib/chromedriver")
+        System.setProperty("webdriver.chrome.driver", "bin/chromedriver")
         driver = new ChromeDriver()
         addShutdownHook {
             driver.quit()

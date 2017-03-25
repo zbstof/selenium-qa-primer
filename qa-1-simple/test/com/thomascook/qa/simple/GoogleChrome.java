@@ -13,7 +13,7 @@ public class GoogleChrome {
     private static final int HALF_SECOND = 500;
 
     public static void main(String[] args) throws Exception {
-        System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "bin/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.navigate().to("http://www.google.com");
         WebElement queryElement = driver.findElement(By.name("q"));
