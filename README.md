@@ -18,6 +18,8 @@ Selenium, Groovy, Cucumber, Geb, Maven, junit, reporting stack
 
 Hint: By.name("q") - query
 
+Docs: [Getting started with selenium](https://github.com/SeleniumHQ/selenium/wiki/Getting-Started)
+
 ## java class with main method - chrome 
 - Download chrome driver and unpack the [binary](https://chromedriver.storage.googleapis.com/index.html)
 Put binary into `bin` directory
@@ -45,6 +47,8 @@ Hint: By.cssSelector("#resultStats") - text on top
 - add groovy [lib with sources](http://central.maven.org/maven2/org/codehaus/groovy/groovy-all/)
 - migrate to groovy
 - show PowerAssert enhanced reporting
+
+Docs: [Groovy doc](http://groovy-lang.org/single-page-documentation.html)
 
 ## Separate Page files
 
@@ -84,7 +88,7 @@ correct page should be validated (and wait for) separately
 - run all features from command-line:
 `java -ea -classpath "./out/test/qa-2-bdd/:./lib/*" cucumber.api.cli.Main --glue qa-2-bdd/test/com/thomascook/qa/glue qa-2-bdd/test/cucumber/`
 
-Docs: Cucumber jvm - https://cucumber.io/docs/reference/jvm
+Docs: [Cucumber jvm](https://cucumber.io/docs/reference/jvm)
 
 ## Geb - groovy automation
 
@@ -104,6 +108,8 @@ Docs: Cucumber jvm - https://cucumber.io/docs/reference/jvm
 - Run from command-line:
 `java -ea -classpath "./out/test/qa-3-geb/:./lib/*" cucumber.api.cli.Main --glue qa-3-geb/test/com/thomascook/qa/glue qa-3-geb/test/cucumber/`
 
+Docs: [Geb](www.gebish.org/manual/current/)
+
 ## Maven - dependency management
 
 - add pom file with the following dependencies
@@ -118,6 +124,10 @@ Docs: Cucumber jvm - https://cucumber.io/docs/reference/jvm
 - Add Junit test with @CucumberOptions
 - run tests
 
+Docs:
+* [Maven - layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html)
+* [Maven - dependencies](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html)
+
 ## Managing driver binaries
 
 - add dependency to pom: io.github.bonigarcia:webdrivermanager
@@ -125,13 +135,23 @@ Docs: Cucumber jvm - https://cucumber.io/docs/reference/jvm
 - remove `bin` directory
 - run tests
 
+Docs: [webdrivermanager github](https://github.com/bonigarcia/webdrivermanager)
+
 ## Reporting
 
 - add format option to junit cucumber report: `format = "json:target/cucumber.json"`
 - Add screenshot taking to After hook
-- add dependency to pom: net.masterthought:cucumber-reporting
+- add dependency to pom: net.masterthought:cucumber-reporting - same tool jenkins uses
 - Add code to parse json and generate html reports
     * To shutdownHook of Junit test
-    * To maven execution stage
+    * To maven plugin `maven-cucumber-reporting` execution stage
     * To format plugin option of junit test
 - maybe add code, so that each report will be written to different folder
+
+Docs: [cucumber-reporting github](https://github.com/damianszczepanik/cucumber-reporting)
+
+## Cucumber tags
+
+- Add to runner VM options `-Dcucumber.options="--tags ~@Ignore"`, add @Ignore to one of the Scenarios, run test
+- Add `tags = "~@Ignore"` to `@CucumberOptions`, run test
+- Add `@Ignore` to whole `Feature`, run test

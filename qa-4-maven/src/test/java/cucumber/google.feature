@@ -1,5 +1,6 @@
 Feature: As a Webrio user, I want to look up my project on google, so that I can feel important
 
+  @Ignore
   Scenario: I look up webrio on google
     Given I go to google website
     When I search for 'webrio thomas cook'

@@ -10,7 +10,8 @@ import org.junit.runner.RunWith
         // glue and features are not pulled from target
         glue = "src/test/java/com/thomascook/qa/glue",
         features = "src/test/java/cucumber/",
-        format = "json:target/cucumber.json")
+        format = "json:target/cucumber.json",
+        tags = "~@Ignore")
 class TestRunner {
     @AfterClass
     static void reports() {
