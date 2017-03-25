@@ -7,7 +7,6 @@ import groovy.transform.Field
 import static cucumber.api.groovy.EN.And
 import static cucumber.api.groovy.EN.Then
 
-
 @Lazy
 @Field
 ResultsPage page = page as ResultsPage

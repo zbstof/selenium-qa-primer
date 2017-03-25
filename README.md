@@ -82,7 +82,7 @@ correct page should be validated (and wait for) separately
     * page data on page object
 - run .feature file directly from IDEA
 - run all features from command-line:
-`java -classpath "./out/test/qa-2-bdd/:./lib/*" cucumber.api.cli.Main --glue qa-2-bdd/test/com/thomascook/qa/glue qa-2-bdd/test/cucumber/`
+`java -ea -classpath "./out/test/qa-2-bdd/:./lib/*" cucumber.api.cli.Main --glue qa-2-bdd/test/com/thomascook/qa/glue qa-2-bdd/test/cucumber/`
 
 
 Docs: Cucumber jvm - https://cucumber.io/docs/reference/jvm
@@ -100,6 +100,13 @@ Docs: Cucumber jvm - https://cucumber.io/docs/reference/jvm
 - Add bindingUpdater initialization/removal to Before/After hooks in env.groovy 
 - Remove waitFor, parent Page class
 - add @lazy @field for syntax highlighting
+- replace access by index to array-like accessor on Navigator object
+- Run feature directly from IDEA
+- Run from command-line:
+`java -ea -classpath "./out/test/qa-3-geb/:./lib/*" cucumber.api.cli.Main --glue qa-3-geb/test/com/thomascook/qa/glue qa-3-geb/test/cucumber/`
 
-- java -classpath "./out/test/qa-1-command-line/:./lib/*:/Users/zbstof/groovy-2.4.8/lib/*" cucumber.api.cli.Main --glue ./src/com/thomascook/qa/steps ./src/cucumber/google.feature
-- java -classpath "./out/test/qa-1-command-line/:./lib/*:/Users/zbstof/groovy-2.4.8/lib/*" cucumber.api.cli.Main --glue ./src/com/thomascook/qa/bdd/steps ./src/com/thomascook/qa/bdd/cucumber/google.feature
+## Maven - dependency management
+
+## Reporting
+
+- Add screenshot taking to After hook

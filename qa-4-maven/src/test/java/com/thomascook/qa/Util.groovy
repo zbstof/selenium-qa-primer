@@ -3,8 +3,6 @@ package com.thomascook.qa
 import cucumber.api.PendingException
 
 class Util {
-    static int HALF_SECOND = 500;
-
     static int parse(String marker) {
         if (marker == 'first') {
             return 1
