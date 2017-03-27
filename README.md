@@ -21,6 +21,7 @@ Selenium, Groovy, Cucumber, Geb, Maven, junit, reporting stack
         java -ea -cp "./out:lib/*" com.thomascook.qa.GoogleHtmlUnit
 
 Hint: By.name("q") - query
+Hint: to check selectors in browser, use js functions in console: `document.getElementById()`, `document.getElementsBy*()`, `document.querySelectorAll()`
 
 Docs: [Getting started with selenium](https://github.com/SeleniumHQ/selenium/wiki/Getting-Started)
 
