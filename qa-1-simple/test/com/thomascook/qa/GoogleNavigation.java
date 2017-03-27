@@ -45,7 +45,7 @@ public class GoogleNavigation {
 
             // have to refresh stats
             WebElement stats = driver.findElement(By.cssSelector("#resultStats"));
-            assert stats.getText().startsWith("Page 2");
+            assert stats.getText().startsWith("Сторінка 2");
 
         } finally {
             driver.quit();

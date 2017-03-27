@@ -16,8 +16,8 @@ Selenium, Groovy, Cucumber, Geb, Maven, junit, reporting stack
     * print page title
 - compile and run
 
-        javac -d out/test/qa-1-simple/ -cp "lib/selenium-server-standalone-3.3.1.jar" $(find qa-1-simple/test -name '*.java')
-        groovyc -d out/test/qa-1-simple/ -cp "lib/selenium-server-standalone-3.3.1.jar" $(find qa-1-simple/test -name '*.groovy')
+        javac -d out -cp "lib/selenium-server-standalone-3.3.1.jar" $(find qa-1-simple/test -name '*.java')
+        groovyc -d out -cp "lib/selenium-server-standalone-3.3.1.jar" $(find qa-1-simple/test -name '*.groovy')
         java -ea -cp "./out:lib/*" com.thomascook.qa.GoogleHtmlUnit
 
 Hint: By.name("q") - query
@@ -102,8 +102,8 @@ correct page should be validated (and wait for) separately
 - run .feature file directly from IDEA
 - run all features from command-line:
 
-        groovyc -d out/test/qa-2-bdd/ -cp "lib/selenium-server-standalone-3.3.1.jar:lib/gherkin-2.12.2.jar:lib/cucumber-core-1.2.5.jar:lib/cucumber-groovy-1.2.5.jar:cucumber-jvm-deps-1.0.5.jar" $(find qa-2-bdd/test -name '*.groovy')
-        java -ea -cp "./out/test/qa-2-bdd:./lib/*" cucumber.api.cli.Main --glue qa-2-bdd/test/glue qa-2-bdd/test/cucumber/
+        groovyc -d out -cp "lib/selenium-server-standalone-3.3.1.jar:lib/gherkin-2.12.2.jar:lib/cucumber-core-1.2.5.jar:lib/cucumber-groovy-1.2.5.jar:cucumber-jvm-deps-1.0.5.jar" $(find qa-2-bdd/test -name '*.groovy')
+        java -ea -cp "./out:./lib/*" cucumber.api.cli.Main --glue qa-2-bdd/test/glue qa-2-bdd/test/cucumber/
 
 Docs: [Cucumber jvm](https://cucumber.io/docs/reference/jvm)
 
@@ -124,8 +124,8 @@ Docs: [Cucumber jvm](https://cucumber.io/docs/reference/jvm)
 - Run feature directly from IDEA
 - Run from command-line:
 
-        groovyc -d out/test/qa-3-geb/ -cp "lib/selenium-server-standalone-3.3.1.jar:lib/gherkin-2.12.2.jar:lib/cucumber-core-1.2.5.jar:lib/cucumber-groovy-1.2.5.jar:cucumber-jvm-deps-1.0.5.jar:lib/geb-ast-1.1.1.jar:lib/geb-core-1.1.1.jar:lib/geb-exceptions-1.1.1.jar:lib/geb-waiting-1.1.1.jar" $(find qa-3-geb/test -name '*.groovy')
-        java -ea -cp "./out/test/qa-3-geb/:./lib/*" cucumber.api.cli.Main --glue qa-3-geb/test/glue qa-3-geb/test/cucumber/
+        groovyc -d out -cp "lib/selenium-server-standalone-3.3.1.jar:lib/gherkin-2.12.2.jar:lib/cucumber-core-1.2.5.jar:lib/cucumber-groovy-1.2.5.jar:cucumber-jvm-deps-1.0.5.jar:lib/geb-ast-1.1.1.jar:lib/geb-core-1.1.1.jar:lib/geb-exceptions-1.1.1.jar:lib/geb-waiting-1.1.1.jar" $(find qa-3-geb/test -name '*.groovy')
+        java -ea -cp "./out:./lib/*" cucumber.api.cli.Main --glue qa-3-geb/test/glue qa-3-geb/test/cucumber/
 
 Docs: [Geb](www.gebish.org/manual/current/)
 
