@@ -20,7 +20,7 @@ Selenium, Groovy, Cucumber, Geb, Maven, junit, reporting stack
         groovyc -d out -cp "lib/selenium-server-standalone-3.3.1.jar" $(find qa-1-simple/test -name '*.groovy')
         java -ea -cp "./out:lib/*" com.thomascook.qa.GoogleHtmlUnit
 
-Hint: By.name("q") - query
+Hint: `By.name("q")` - query
 Hint: to check selectors in browser, use js functions in console: `document.getElementById()`, `document.getElementsBy*()`, `document.querySelectorAll()`
 
 Docs: [Getting started with selenium](https://github.com/SeleniumHQ/selenium/wiki/Getting-Started)
@@ -35,7 +35,7 @@ Put binary into `bin` directory
 
         java -ea -cp "./out:lib/*" com.thomascook.qa.GoogleChrome
 
-Hint: By.cssSelector(".rc") - results
+Hint: `By.cssSelector(".rc")` - results
 
 ## java class with main method with navigation
 
@@ -48,9 +48,9 @@ Hint: By.cssSelector(".rc") - results
 
         java -ea -cp "./out:lib/*" com.thomascook.qa.GoogleNavigation
 
-Hint: "table#nav td:not(.b)" - navs
-Hint: class="cur" - current nav
-Hint: By.cssSelector("#resultStats") - text on top
+Hint: `"table#nav td:not(.b)"` - navs  
+Hint: `class="cur"` - current nav  
+Hint: `By.cssSelector("#resultStats")` - text on top  
 
 ## Groovy class with main method
 
@@ -78,7 +78,7 @@ it should ignore exceptions on call()
 
         java -ea -cp "./out:lib/*" com.thomascook.qa.GooglePages
 
-Hint: separate content for current navigator and all navigators
+Hint: separate content for current navigator and all navigators  
 Hint: ResultsPage at checker should only check for results presence,
 correct page should be validated (and wait for) separately
 
