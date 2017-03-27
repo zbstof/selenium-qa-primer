@@ -14,7 +14,11 @@ Selenium, Groovy, Cucumber, Geb, Maven, junit, reporting stack
     * Open google search page
     * Search for `webrio thomas cook`
     * print page title
-- compile and run (TODO: command-line to do that)
+- compile and run
+
+        javac -d out/test/qa-1-simple/ -cp "lib/selenium-server-standalone-3.3.1.jar" $(find qa-1-simple/test -name '*.java')
+        groovyc -d out/test/qa-1-simple/ -cp "lib/selenium-server-standalone-3.3.1.jar" $(find qa-1-simple/test -name '*.groovy')
+        java -ea -cp "./out:lib/*" com.thomascook.qa.GoogleHtmlUnit
 
 Hint: By.name("q") - query
 
@@ -28,6 +32,8 @@ Put binary into `bin` directory
 - add `assert`-tions, add `-enableassertions` to command-line, so those would work
 - compile and run
 
+        java -ea -cp "./out:lib/*" com.thomascook.qa.GoogleChrome
+
 Hint: By.cssSelector(".rc") - results
 
 ## java class with main method with navigation
@@ -37,6 +43,9 @@ Hint: By.cssSelector(".rc") - results
 - assert number of navs >=2
 - add click on second navigational 'o', and check for page to load
 - validate text on top of the page
+- compile and run
+
+        java -ea -cp "./out:lib/*" com.thomascook.qa.GoogleNavigation
 
 Hint: "table#nav td:not(.b)" - navs
 Hint: class="cur" - current nav
@@ -46,7 +55,10 @@ Hint: By.cssSelector("#resultStats") - text on top
 
 - add groovy [lib with sources](http://central.maven.org/maven2/org/codehaus/groovy/groovy-all/)
 - migrate to groovy
-- show PowerAssert enhanced reporting
+- show PowerAssert enhanced reporting               
+- compile and run
+
+        java -ea -cp "./out:lib/*" com.thomascook.qa.GoogleGroovyNavigation
 
 Docs: [Groovy doc](http://groovy-lang.org/single-page-documentation.html)
 
@@ -60,7 +72,10 @@ Docs: [Groovy doc](http://groovy-lang.org/single-page-documentation.html)
     * action section
     * asserts section
 - write waitFor implementation that accepts Closure<Boolean>, 
-it should ignore exceptions on call()
+it should ignore exceptions on call()   
+- compile and run
+
+        java -ea -cp "./out:lib/*" com.thomascook.qa.GooglePages
 
 Hint: separate content for current navigator and all navigators
 Hint: ResultsPage at checker should only check for results presence,
@@ -86,7 +101,9 @@ correct page should be validated (and wait for) separately
     * page data on page object
 - run .feature file directly from IDEA
 - run all features from command-line:
-`java -ea -classpath "./out/test/qa-2-bdd/:./lib/*" cucumber.api.cli.Main --glue qa-2-bdd/test/com/thomascook/qa/glue qa-2-bdd/test/cucumber/`
+
+        groovyc -d out/test/qa-2-bdd/ -cp "lib/selenium-server-standalone-3.3.1.jar:lib/gherkin-2.12.2.jar:lib/cucumber-core-1.2.5.jar:lib/cucumber-groovy-1.2.5.jar:cucumber-jvm-deps-1.0.5.jar" $(find qa-2-bdd/test -name '*.groovy')
+        java -ea -cp "./out/test/qa-2-bdd:./lib/*" cucumber.api.cli.Main --glue qa-2-bdd/test/glue qa-2-bdd/test/cucumber/
 
 Docs: [Cucumber jvm](https://cucumber.io/docs/reference/jvm)
 
@@ -106,7 +123,9 @@ Docs: [Cucumber jvm](https://cucumber.io/docs/reference/jvm)
 - replace access by index to array-like accessor on Navigator object
 - Run feature directly from IDEA
 - Run from command-line:
-`java -ea -classpath "./out/test/qa-3-geb/:./lib/*" cucumber.api.cli.Main --glue qa-3-geb/test/com/thomascook/qa/glue qa-3-geb/test/cucumber/`
+
+        groovyc -d out/test/qa-3-geb/ -cp "lib/selenium-server-standalone-3.3.1.jar:lib/gherkin-2.12.2.jar:lib/cucumber-core-1.2.5.jar:lib/cucumber-groovy-1.2.5.jar:cucumber-jvm-deps-1.0.5.jar:lib/geb-ast-1.1.1.jar:lib/geb-core-1.1.1.jar:lib/geb-exceptions-1.1.1.jar:lib/geb-waiting-1.1.1.jar" $(find qa-3-geb/test -name '*.groovy')
+        java -ea -cp "./out/test/qa-3-geb/:./lib/*" cucumber.api.cli.Main --glue qa-3-geb/test/glue qa-3-geb/test/cucumber/
 
 Docs: [Geb](www.gebish.org/manual/current/)
 
@@ -118,11 +137,20 @@ Docs: [Geb](www.gebish.org/manual/current/)
     * cucumber-groovy
     * geb-core
 - Explain how maven manages dependencies and all transitive dependencies are downloaded automatically
-- move GebConfig to resources
-- maven test -> nothing happens -> need to add junit test for surefire-plugin to run
+- move GebConfig, features, glue to resources, as they don't need to be compiled
+- Run test in IDEA. Idea uses dependency information from maven, but uses it's own
+facilities to compile and run code
+- how to run in maven?
 - add dependency to pom: cucumber-junit
 - Add Junit test with @CucumberOptions
-- run tests
+- run test in maven
+
+        qa-4-maven$ mvn clean test
+        
+- No tests found. Add `gmavenplus-plugin` plugin, with goal `testCompile`
+- run maven again         
+
+        qa-4-maven$ mvn clean test
 
 Docs:
 * [Maven - layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html)
@@ -139,7 +167,7 @@ Docs: [webdrivermanager github](https://github.com/bonigarcia/webdrivermanager)
 
 ## Reporting
 
-- add format option to junit cucumber report: `format = "json:target/cucumber.json"`
+- add format option to junit cucumber report: `format = ["json:target/cucumber.json", "pretty"]`
 - Add screenshot taking to After hook
 - add dependency to pom: net.masterthought:cucumber-reporting - same tool jenkins uses
 - Add code to parse json and generate html reports

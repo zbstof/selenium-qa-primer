@@ -1,4 +1,4 @@
-package com.thomascook.qa.glue
+package glue
 
 import com.thomascook.qa.pages.SearchPage
 

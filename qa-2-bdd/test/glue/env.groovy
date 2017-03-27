@@ -1,4 +1,4 @@
-package com.thomascook.qa.glue
+package glue
 
 import cucumber.api.groovy.Hooks
 import org.openqa.selenium.WebDriver

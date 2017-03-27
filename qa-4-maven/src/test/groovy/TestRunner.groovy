@@ -8,11 +8,12 @@ import org.junit.runner.RunWith
 @RunWith(Cucumber)
 @CucumberOptions(
         // glue and features are not pulled from target
-        glue = "src/test/java/com/thomascook/qa/glue",
-        features = "src/test/java/cucumber/",
-        format = "json:target/cucumber.json",
+        glue = "src/test/resources/glue",
+        features = "src/test/resources/features/",
+        plugin = ["pretty", "json:target/cucumber.json"],
         tags = "~@Ignore")
 class TestRunner {
+
     @AfterClass
     static void reports() {
         addShutdownHook {
